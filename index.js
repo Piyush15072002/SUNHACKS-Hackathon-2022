@@ -17,6 +17,12 @@ const session = require('express-session');
 
 const cookieparser = require('cookie-parser');
 
+// Router routes importing
+
+const userRoutes = require('./routes/users');
+const guideRoutes = require('./routes/guides');
+
+
 app.engine('ejs', ejsMate);
 
 app.set('view engine', 'ejs');
@@ -44,15 +50,11 @@ db.once('open', () => {
 app.use(cookieparser());
 app.use(express.json());
 
-// Router routes importing
 
-const userRoutes = require('./routes/users');
-const guidesRoutes = require('./routes/guides');
 
 // Router Routes handling
 app.use('/user', userRoutes);
-app.use('/guide', guidesRoutes);
-
+app.use('/guide', guideRoutes);
 
 
 
