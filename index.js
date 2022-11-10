@@ -28,7 +28,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
     res.render('index.ejs');
-})
+});
+
+app.get('/aboutus', (req, res) => {
+    res.render('aboutus.ejs');
+});
 
 
 
