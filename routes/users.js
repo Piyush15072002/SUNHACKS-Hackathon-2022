@@ -102,7 +102,7 @@ router.post('/login', isVerified, async (req, res) => {
                 // Storing the created user in cookie
                 res.cookie('access-token', token)
 
-                res.redirect(`/dashboard/${findUser.type}/${findUser._id}`);
+                res.redirect('/');
             }
             else {
                 res.redirect('/login');
@@ -133,7 +133,7 @@ router.post('/register', async (req, res) => {
 
     try {
 
-        const { username, email, password, type } = req.body;
+        const { username, email, password, number } = req.body;
 
         const user = await new User({
             username,
@@ -156,16 +156,17 @@ router.post('/register', async (req, res) => {
         let mailOptions = {
             from: ' "Activate your account" <songoku150702@gmail.com> ',
             to: user.email,
-            subject: 'Cityguider - Activate your account',
+            subject: 'ThePride - Activate your account',
             html: `<h1>Hi ${user.username}!</h1>
             <h3>Thanks for Registering on our site</h3>
-            <p>Can't find good vlogs for entertainment and services in your new city? Well do not worry more, CityGuider is here for you!</p>
-            <p>We are dedicated to help you anytime you need us by providing you with the best services and vlogs you need.</p>
+            <p>Need detailed tour of your favourite heritage site online?</p>
+            <p>Need a guide to help your offline tour?</p>
+            <p>You do not have to worry! We are here for you. Our team will guide to the best and help you with your learning about your favorite monument while you enjoy the best moment of your life! Join us.</p>
             <p>All you need to do now is to activate your account and continue using our services</p>
-            <a href="http://${req.headers.host}/activateaccount?token=${user.emailToken}">Activate your account</a>
+            <a href="http://${req.headers.host}/user/activateaccount?token=${user.emailToken}">Activate your account</a>
             <br>
             <p><b>Warm Regards,</b><p>
-            <p><b>Team CityGuider</b></p>`
+            <p><b>Team ThePride</b></p>`
         }
 
         // sending mail

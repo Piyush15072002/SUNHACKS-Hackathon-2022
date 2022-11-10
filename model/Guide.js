@@ -35,6 +35,14 @@ const guideSchema = new schema({
         default: Date.now
     },
 
+    fees: {
+        type: Number,
+        default: 0
+    },
+    place: {
+        type: String,
+    }
+
 
 });
 

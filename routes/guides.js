@@ -21,21 +21,22 @@ const isVerified = require('../middlewares/isVerified');
 
 // Partner Registration
 
-router.get('/partnerregister', (req, res) => {
+router.get('/register', (req, res) => {
     res.render('partnerRegister.ejs')
 });
 
-router.post('/partnerregister', async (req, res) => {
+router.post('/register', async (req, res) => {
 
     try {
 
-        const { username, email, password, number, type } = req.body;
+        const { username, email, password, number, fees, place } = req.body;
 
         const user = await new User({
             username,
             email,
             password,
-
+            fees,
+            place,
             number,
             emailToken: crypto.randomBytes(64).toString('hex'),
             isVerified: false,
@@ -52,21 +53,21 @@ router.post('/partnerregister', async (req, res) => {
 
         // Send verification mail to the user
         let mailOptions = {
-            from: ' "Activate your account" <cityguider@cityguider.in> ',
+            from: ' "Activate your account" <songoku150702@gmail.com> ',
             to: user.email,
-            subject: 'Cityguider - Activate your account',
+            subject: 'ThePride - Activate your account',
             html: `<h1>Hi ${user.username}!</h1>
             <h3>Thanks for Partnering with us, we are really happy to get your support</h3>
-            <p>With us, you will be able to put your Vlogs, increase your video views, expand your audience, earn new subscribers, and be in contact with us and our customers</p>
-            <p>We are dedicated to help you anytime you need us by providing you with the best services.</p>
+            <p>With us, you will be able to gain popularity, increase your work profit, expand your audience, and be in contact with us and our customers</p>
+            <p>We are dedicated to help you anytime you need us by providing you with the best services and best customers</p>
             <p>All you need to do now is to activate your account and become our partner :-)</p>
-            <a href="http://${req.headers.host}/activateaccount?token=${user.emailToken}">Activate your account</a>
+            <a href="http://${req.headers.host}/guide/activateaccount?token=${user.emailToken}">Activate your account</a>
             <p>PS- Before verifying please check your details below for future contact</p>
             <p>Username : ${user.username}</p>
             <p>Phone number : ${user.number}</p>
             <br><br><br>
             <p><b>Warm Regards,</b><p>
-            <p><b>Team CityGuider</b></p>`
+            <p><b>Team ThePride</b></p>`
         }
 
         // sending mail
