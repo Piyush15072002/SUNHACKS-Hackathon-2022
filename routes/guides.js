@@ -40,8 +40,11 @@ let transporter = nodemailer.createTransport({
 
 
 // guides
-router.get('/', (req, res) => {
-    res.render('guides.ejs');
+router.get('/', async (req, res) => {
+
+    const guides = await Guide.find();
+
+    res.render('guides.ejs', { guides: guides });
 })
 
 

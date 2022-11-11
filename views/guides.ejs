@@ -1,1 +1,19 @@
 <% layout("boilerplate.ejs") %> 
+
+<div class="container">
+
+    <% for (let guide in guides) {%> 
+
+    <div class="card mb-3 mt-5 shadow ">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                           <% console.log(guides[guide]) %>  
+                            <img style="max-height: 200px; max-width: 200px" src="<%=guides[guide].image %> "
+                            class="img-fluid rounded-start" alt="Pandit image">
+                        </div>
+                    </div>
+                </div>
+
+    <% } %> 
+
+</div>

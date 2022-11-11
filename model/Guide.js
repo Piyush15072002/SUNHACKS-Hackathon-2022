@@ -25,6 +25,10 @@ const guideSchema = new schema({
         type: String,
 
     },
+    image: {
+        type: String,
+        default: "https://images.squarespace-cdn.com/content/v1/56b589c60442626693853236/1488793006848-FVC8RW1Y61KG31K32I2U/1.jpg",
+    },
 
     number: {
         type: Number
@@ -37,10 +41,11 @@ const guideSchema = new schema({
 
     fees: {
         type: Number,
-        default: 0
+        default: 100
     },
     place: {
         type: String,
+        default: "Mumbai"
     }
 
 
