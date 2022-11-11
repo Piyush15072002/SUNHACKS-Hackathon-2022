@@ -43,11 +43,35 @@
           
           
         </ul>
+
+        <% if(!currentUser._id){ %> 
         
         <a class="btn btn-default text-white px-2 mx-2 guide" href="/guide/register">Become our Guide</a>
         <a style="background-color:darkblue; border:1px solid darkblue;" class="user btn btn-primary px-2 mx-2" href="/user/login">Login</a>
         <a style="background-color:darkblue; border:1px solid darkblue;" class="user btn btn-primary px-2 mx-2" href="/user/Register">Register</a>
+        
+        <% }else{ %>
 
+          <% if( currentUser.fees ){%>
+            <form action="/guide/logout" method="post">
+          
+              <button class="user btn btn-danger px-2 mx-2">
+                Logout
+              </button>
+            </form>
+            <% }else{ %> 
+
+              <form action="/user/logout" method="post">
+          <button class="user btn btn-danger px-2 mx-2">
+            Logout
+          </button>
+                
+              </form>
+              
+        <% } %> 
+
+          
+          <% } %> 
       </div>
     </div>
   </nav>

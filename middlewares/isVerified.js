@@ -1,4 +1,5 @@
 const User = require('../model/User');
+const Guide = require('../model/Guide');
 
 const jwt = require('jsonwebtoken');
 
@@ -6,7 +7,14 @@ const cookie = require('cookie-parser');
 
 const isVerified = async (req, res, next) => {
     try {
+
+        console.log(req.body)
+
         const user = await User.findOne({ email: req.body.email })
+        const guide = await Guide.findOne({ email: req.body.email })
+
+        console.log(user)
+        console.log(guide)
 
         if (user) {
             if (user.isVerified === true) {
@@ -21,8 +29,21 @@ const isVerified = async (req, res, next) => {
 
 
         }
-        else {
-            res.redirect('/register');
+        else if (guide) {
+            if (guide.isVerified === true) {
+                return next();
+            }
+
+            if (guide.isVerified === false) {
+                console.log("Please activate your account using the email sent to you!")
+                const message = "Please activate your Account using the mail sent to your registered Email, then Login again! "
+                return res.render('message.ejs', { message: message });
+            }
+
+        } else {
+            const message = "There is an error, Please contact the ThePride Dev team";
+            return res.render('message.ejs', { message: message });
+
         }
 
 

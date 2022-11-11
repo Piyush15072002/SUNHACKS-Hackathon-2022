@@ -15,6 +15,11 @@ const mongoose = require('mongoose');
 
 const session = require('express-session');
 
+const jwt = require('jsonwebtoken');
+
+const User = require('./model/User');
+const Guide = require('./model/Guide');
+
 const cookieparser = require('cookie-parser');
 
 // Router routes importing
@@ -62,11 +67,21 @@ app.use(async (req, res, next) => {
 
         const userId = payload.id
 
+
+
         const user = await User.findById(userId);
+        const guide = await Guide.findById(userId);
 
         if (user) {
 
             res.locals.currentUser = user;
+
+
+            next();
+        }
+        else if (guide) {
+            res.locals.currentUser = guide;
+
             next();
         }
         else {

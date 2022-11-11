@@ -16,6 +16,7 @@ const nodemailer = require('nodemailer');
 
 const cookie = require('cookie-parser');
 
+
 const isVerified = require('../middlewares/isVerified');
 
 
@@ -29,7 +30,7 @@ const createToken = (id) => {
 // Email sender details
 
 let transporter = nodemailer.createTransport({
-    host: 'songoku150702@gmail.com',
+    host: 'smtp.gmail.com',
     auth: {
         user: process.env.email_username,
         pass: process.env.email_password
@@ -60,7 +61,7 @@ router.get('/activateaccount', async (req, res) => {
 
             await user.save();
 
-            res.redirect('/login')
+            res.redirect('/user/login')
 
         }
         else {
@@ -105,12 +106,12 @@ router.post('/login', isVerified, async (req, res) => {
                 res.redirect('/');
             }
             else {
-                res.redirect('/login');
+                res.redirect('/user/login');
             }
 
         }
         else {
-            res.redirect('/login');
+            res.redirect('/user/login');
         }
 
 
@@ -131,33 +132,44 @@ router.get('/register', (req, res) => {
 
 router.post('/register', async (req, res) => {
 
+
+
     try {
 
         const { username, email, password, number } = req.body;
 
-        const user = await new User({
-            username,
-            email,
-            password,
-            emailToken: crypto.randomBytes(64).toString('hex'),
-            isVerified: false,
-        });
 
-        const salt = await bcrypt.genSalt(10)
+        const existingUser = await User.findOne({ email: email })
 
-        const hashedPassword = await bcrypt.hash(user.password, salt)
+        if (!existingUser) {
 
-        user.password = hashedPassword
+            const user = new User({
+                username,
+                email,
+                password,
+                number,
+                emailToken: crypto.randomBytes(64).toString('hex'),
+                isVerified: false,
+            });
 
-        const newuser = await user.save();
+            console.log(req.body);
+            console.log(user);
+
+            const salt = await bcrypt.genSalt(10)
+
+            const hashedPassword = await bcrypt.hash(user.password, salt)
+
+            user.password = hashedPassword
+
+            const newuser = await user.save();
 
 
-        // Send verification mail to the user
-        let mailOptions = {
-            from: ' "Activate your account" <songoku150702@gmail.com> ',
-            to: user.email,
-            subject: 'ThePride - Activate your account',
-            html: `<h1>Hi ${user.username}!</h1>
+            // Send verification mail to the user
+            let mailOptions = {
+                from: ' "Activate your account" <songoku150702@gmail.com> ',
+                to: user.email,
+                subject: 'ThePride - Activate your account',
+                html: `<h1>Hi ${user.username}!</h1>
             <h3>Thanks for Registering on our site</h3>
             <p>Need detailed tour of your favourite heritage site online?</p>
             <p>Need a guide to help your offline tour?</p>
@@ -167,23 +179,30 @@ router.post('/register', async (req, res) => {
             <br>
             <p><b>Warm Regards,</b><p>
             <p><b>Team ThePride</b></p>`
+            }
+
+            // sending mail
+            transporter.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                    console.log(error)
+                    const message = "Sorry an error occurred at server :-("
+                    return res.render('message.ejs', { message: message });
+                }
+                else {
+                    console.log('An account activation mail has been sent to your email')
+
+                }
+            })
+
+            const message = "We have sent a mail to your email account! Please activate your account using the link given in the mail, Check Spam folder if you cannot find the mail :-)"
+            res.render('message.ejs', { message: message });
+
+        } else {
+            const message = "User is already there with entered email";
+            res.render('message.ejs', { message: message })
+
         }
 
-        // sending mail
-        transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-                console.log(error)
-                const message = "Sorry an error occurred at server :-("
-                return res.render('message.ejs', { message: message });
-            }
-            else {
-                console.log('An account activation mail has been sent to your email')
-
-            }
-        })
-
-        const message = "We have sent a mail to your email account! Please activate your account using the link given in the mail, Check Spam folder if you cannot find the mail :-)"
-        res.render('message.ejs', { message: message });
 
     } catch (err) {
         console.log(err);

@@ -5,7 +5,7 @@
 
   <div class="col-6 offset-3 mb-5 mt-5">
 
-    <h1>Register</h1>
+    <h1>Guide Registration</h1>
 
     <form action="/guide/register" method="post">
 
@@ -23,10 +23,6 @@
               <input name="username" type="text" class="form-control" id="exampleInputPassword">
             </div>
 
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
-            </div>
 
             <div class="mb-3">
               <label for="exampleInputPassword2" class="form-label">Contact Number</label>
@@ -35,7 +31,7 @@
 
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Place for Tour </label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
+                <input name="place" type="text" class="form-control" id="exampleInputPassword1">
               </div>
 
             <div class=" input-group mb-3">
@@ -43,14 +39,14 @@
 
               <span class="input-group-text">₹</span>
               <div class="form-floating">
-                <input type="number" class="form-control" id="exampleInputPassword1">
+                <input name="fees" type="number" class="form-control" id="exampleInputPassword1">
                 <label for="floatingInputGroup1">Fees for your Tour (approximate)</label>
                 </div>
             </div>
             
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
+              <input name="password" type="password" class="form-control" id="exampleInputPassword1">
             </div>
             
             <button type="submit" class="btn btn-primary">Register</button>
