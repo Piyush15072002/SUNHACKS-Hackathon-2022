@@ -1,6 +1,7 @@
 <% layout("boilerplate.ejs") %>
 
-<div class="container mt-5 mb-5 ">
+
+<div style="height: 60vh;" class="container mt-5 mb-5 ">
 
     <div class="card mb-3" style="max-width: 540px;">
         <div class="row g-0">
@@ -10,8 +11,8 @@
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title"><%= guide.username %></h5>
-              <p class="card-text">Rs. <%= guide.fees %>
-              <p class="card-text"><%= guide.number %></p>
+              <p class="card-text"> <b> Rs. <%= guide.fees %></b> (Negotiable)
+              <p class="card-text">+91 <%= guide.number %></p>
               <p class="card-text"><%= guide.email %></p>
             </div>
           </div>
