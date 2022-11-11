@@ -39,6 +39,12 @@ let transporter = nodemailer.createTransport({
 })
 
 
+// guides
+router.get('/', (req, res) => {
+    res.render('guides.ejs');
+})
+
+
 // activating account
 
 router.get('/activateaccount', async (req, res) => {

@@ -26,6 +26,7 @@ const cookieparser = require('cookie-parser');
 
 const userRoutes = require('./routes/users');
 const guideRoutes = require('./routes/guides');
+const siteRoutes = require('./routes/sites');
 
 
 app.engine('ejs', ejsMate);
@@ -103,6 +104,7 @@ app.use(async (req, res, next) => {
 // Router Routes handling
 app.use('/user', userRoutes);
 app.use('/guide', guideRoutes);
+app.use('/sites', siteRoutes);
 
 
 
@@ -114,6 +116,17 @@ app.get('/', (req, res) => {
 
 app.get('/aboutus', (req, res) => {
     res.render('aboutus.ejs');
+});
+
+app.get('/contactus', (req, res) => {
+    res.render('contact.ejs');
+});
+app.get('/vocalforlocal', (req, res) => {
+    res.render('vocalforlocal.ejs');
+});
+
+app.get('/infohub', (req, res) => {
+    res.render('infohub.ejs');
 });
 
 
