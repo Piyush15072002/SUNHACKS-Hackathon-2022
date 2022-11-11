@@ -2,9 +2,19 @@
 
   .band{
     width:100%;
-    height:20px;
-    background-color:darkblue;
+    height:70px;
+    background-color:rgb(32, 32, 255);
+   
   }
+
+  .band h1{
+    color:white;
+    padding-top:10px;
+    padding-left:20px;
+    font-family:'Courier New', Courier, monospace;
+    font-size:3em;
+  }
+
   .guide:hover{
    
     transform: translateY(-1px);
@@ -16,18 +26,21 @@
     transition: 0.4s;
   }
 
+ 
 
 </style>
 
-<div style="width:100%;height:10px;background-color:darkblue;" class="band">
+<div class="band">
 
+  <h1 class="">The<b>Pride</b></h1>
 
 
 </div>
+<div class="">
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+<nav style="background-color:rgb(0, 0, 81) !important; font-family:sans-serif;" class="navbar navbar-expand-lg navbar-dark bg-dark ">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">ThePride</a>
+      
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -47,8 +60,8 @@
         <% if(!currentUser._id){ %> 
         
         <a class="btn btn-default text-white px-2 mx-2 guide" href="/guide/register">Become our Guide</a>
-        <a style="background-color:darkblue; border:1px solid darkblue;" class="user btn btn-primary px-2 mx-2" href="/user/login">Login</a>
-        <a style="background-color:darkblue; border:1px solid darkblue;" class="user btn btn-primary px-2 mx-2" href="/user/Register">Register</a>
+        <a style="background-color:rgb(0, 0, 220); border:1px solid darkblue;" class="user btn btn-primary px-2 mx-2" href="/user/login">Login</a>
+        <a style="background-color:rgb(0, 0, 220); border:1px solid darkblue;" class="user btn btn-primary px-2 mx-2" href="/user/Register">Register</a>
         
         <% }else{ %>
 
@@ -76,8 +89,4 @@
     </div>
   </nav>
 
-  <div style="width:100%;height:10px;background-color:darkblue;" class="band">
-
-
-
-  </div>
+</div>

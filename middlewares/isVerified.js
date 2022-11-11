@@ -41,7 +41,7 @@ const isVerified = async (req, res, next) => {
             }
 
         } else {
-            const message = "There is an error, Please contact the ThePride Dev team";
+            const message = "Your email is not registered, You need to Register first";
             return res.render('message.ejs', { message: message });
 
         }

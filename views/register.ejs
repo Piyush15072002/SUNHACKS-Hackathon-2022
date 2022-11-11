@@ -1,11 +1,17 @@
 <% layout("boilerplate.ejs") %>
 
-
+<style>
+  body{
+    background-color: rgb(208, 208, 255);
+  }
+</style>
 <div class="container">
 
     <div class="col-6 offset-3 mb-5 mt-5">
 
-    <h1>Register</h1>
+    <div class="card shadow m-3 p-5">
+
+    <h1 style="color:rgb(0, 0, 119);" class="mb-3 text-center">Register</h1>
 
 
     <form action="/user/register" method="post">
@@ -41,5 +47,6 @@
     </form>
 </div>
 
+</div>
 </div>
 </div>
