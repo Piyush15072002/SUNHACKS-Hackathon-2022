@@ -48,6 +48,20 @@ router.post('/new', isLoggedIn, async (req, res) => {
 });
 
 
+// explore page
+
+router.get('/:id', async (req, res) => {
+
+    const { id } = req.params;
+
+    const site = await Site.findById(id);
+
+    console.log(site);
+
+    res.render("explore.ejs", { site })
+
+})
+
 
 
 module.exports = router;

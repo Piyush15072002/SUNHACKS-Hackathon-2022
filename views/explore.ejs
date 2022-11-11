@@ -1,0 +1,24 @@
+<%- layout("boilerplate.ejs") %> 
+
+<style>
+
+    body{
+        background-color: rgb(206, 206, 255);
+        font-family: "Helvetica Neue",Helvetica
+    }
+</style>
+
+
+<div class="container p-5">
+
+    <div class="card mb-3">
+        <img src="<%= site.image %> " class="card-img-top" alt="...">
+        <div class="card-body">
+          <h1 style="color:darkblue" class="card-title"><%= site.sitename %></h1>
+          <h4> <i> <%= site.city %>, Maharashtra </i></h4>
+          <p class="card-text mt-5"><%= site.description %></p>
+          <p class="card-text"><small class="text-muted">Built in <%= site.built %></small></p>
+        </div>
+      </div>
+
+</div>
