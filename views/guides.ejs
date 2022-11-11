@@ -23,10 +23,9 @@ body{
                     </div>
                       <p class="card-text "> <%=guides[guide].place %>  </p>
 
-                      <p class="text-muted"><%= new
-                        Date((guides[guide].timestamp)*1).toDateString() %></p>
+                      <p class="text-muted"><%= new Date((guides[guide].timestamp)*1).toDateString() %></p>
                    
-                      <a href="#" class="btn btn-primary">Connect +</a>
+                      <a href="/guide/connect/<%=guides[guide]._id%>" class="btn btn-primary">Connect +</a>
                     </div>
                   </div>
                 </div>

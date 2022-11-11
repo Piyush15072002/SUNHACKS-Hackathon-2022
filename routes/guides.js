@@ -17,6 +17,7 @@ const nodemailer = require('nodemailer');
 const cookie = require('cookie-parser');
 
 const isVerified = require('../middlewares/isVerified');
+const isLoggedIn = require('../middlewares/isLoggedIn');
 
 // function to create a JWT token
 
@@ -46,6 +47,26 @@ router.get('/', async (req, res) => {
 
     res.render('guides.ejs', { guides: guides });
 })
+
+router.get('/connect/:id', isLoggedIn, async (req, res) => {
+
+    try {
+
+        const { id } = req.params;
+
+        const guide = await Guide.findById(id);
+
+        console.log(guide)
+
+        res.render("guideprofile.ejs", { guide: guide });
+
+
+    } catch (e) {
+        console.log(e.message);
+    }
+
+
+});
 
 
 // activating account

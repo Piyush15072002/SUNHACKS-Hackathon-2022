@@ -17,11 +17,11 @@ const isLoggedIn = async (req, res, next) => {
         }
         else {
             console.log('Token expired')
-            return res.redirect('/login');
+            return res.redirect('/user/login');
         }
     } else {
         console.log('Token expired')
-        return res.redirect('/login');
+        return res.redirect('/user/login');
     }
 
 };
