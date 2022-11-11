@@ -195,7 +195,6 @@ router.post('/register', async (req, res) => {
 
 
 
-// // Logout
 
 router.post('/logout', (req, res) => {
     res.cookie('access-token', "", { maxAge: 1 })

@@ -1,9 +1,12 @@
 <% layout("boilerplate.ejs") %>
 
 
-<div style="height:100vh;" class="container">
+<div class="container">
+
+    <div class="col-6 offset-3 mb-5 mt-5">
 
     <h1>Register</h1>
+
 
     <form action="/user/register" method="post">
 
@@ -21,10 +24,6 @@
               <input name="username" type="text" class="form-control" id="exampleInputPassword">
             </div>
 
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
-            </div>
 
             <div class="mb-3">
               <label for="exampleInputPassword2" class="form-label">Contact Number</label>
@@ -40,5 +39,7 @@
 
 
     </form>
+</div>
 
+</div>
 </div>

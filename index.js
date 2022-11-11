@@ -51,6 +51,39 @@ app.use(cookieparser());
 app.use(express.json());
 
 
+// middleware to create a local user
+app.use(async (req, res, next) => {
+
+    const token = req.cookies['access-token']
+
+    if (token) {
+
+        const payload = jwt.decode(token, process.env.JWT_SECRET);
+
+        const userId = payload.id
+
+        const user = await User.findById(userId);
+
+        if (user) {
+
+            res.locals.currentUser = user;
+            next();
+        }
+        else {
+            res.locals.currentUser = false
+            next();
+        }
+
+    }
+    else {
+        res.locals.currentUser = false
+        next();
+    }
+
+
+});
+
+
 
 // Router Routes handling
 app.use('/user', userRoutes);

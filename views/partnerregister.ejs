@@ -1,7 +1,9 @@
 <% layout("boilerplate.ejs") %>
 
 
-<div style="height:100vh;" class="container">
+<div class="container">
+
+  <div class="col-6 offset-3 mb-5 mt-5">
 
     <h1>Register</h1>
 
@@ -36,10 +38,14 @@
                 <input type="password" class="form-control" id="exampleInputPassword1">
               </div>
 
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Fees for Tour (Approximate)</label>
-              <span class="input-group-text">@</span>
-              <input type="number" class="form-control" id="exampleInputPassword1">
+            <div class=" input-group mb-3">
+            
+
+              <span class="input-group-text">₹</span>
+              <div class="form-floating">
+                <input type="number" class="form-control" id="exampleInputPassword1">
+                <label for="floatingInputGroup1">Fees for your Tour (approximate)</label>
+                </div>
             </div>
             
             <div class="mb-3">
@@ -52,5 +58,7 @@
 
 
     </form>
+
+</div>
 
 </div>
